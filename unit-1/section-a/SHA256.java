@@ -6,6 +6,11 @@ public class SHA256 {
     private static final int[] K = { /* 64 round constants */ };
     private static final int[] H0 = { /* 8 initial hash values */ };
 
+    private static int sig0(int x) {return rotr(x,7) ^ rotr(x,18) ^ (x>>>3);}
+    private static int sig1(int x) {return rotr(x, 17) ^ rotr(x,19) ^ (x>>>10);}
+
+
+
     // entry point for standalone testing
     public static void main(String[] args) {
         byte[] digest = hash("abc".getBytes(StandardCharsets.UTF_8));
@@ -53,11 +58,29 @@ public class SHA256 {
 
     private static int[] scheduleWords(byte[] block, int blockIndex) {
         // first 16 words from block, extend to 64 via sigma functions
-        return null;
+        int[] w = new int[64];
+        int off = blockIndex * 64;
+
+        // each word is 16 bytes
+        for (int i = 0; i < 16; i++){ 
+            // combind bytes into larger number, | since we dont have overlapping bits
+            w[i] = 
+                (block[off + 4*i] &0xff) << 24 | 
+                (block[off + 4*i+1] &0xff) << 16 | 
+                (block[off + 4*i+2] &0xff) << 8 | 
+                block[off +4*i+3] &0xff;
+        }
+
+        for (int i = 16; i<64; i++){
+            w[i] = (sig1(w[i-2]) + w[i-7] + sig0(w[i-15]) + w[i-16]);
+        }
+
+        return w;
     }
 
     private static void compress(int[] h, int[] w) {
         // 64 rounds with a-h working vars, add result back into h
+        
     }
 
     // ---- helpers ----
