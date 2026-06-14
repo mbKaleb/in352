@@ -36,6 +36,22 @@ public class SHA256 {
         return rotr(x, 17) ^ rotr(x, 19) ^ (x >>> 10);
     }
 
+    private static int upsig0(int x) {
+        return rotr(x, 2) ^ rotr(x, 13) ^ rotr(x, 22);
+    }
+
+    private static int upsig1(int x) {
+        return rotr(x, 6) ^ rotr(x, 11) ^ rotr(x, 25);
+    }
+
+    private static int choice(int e, int f, int g) {
+        return (e & f) ^ (~e & g);
+    }
+
+    private static int majority(int a, int b, int c) {
+        return (a & b) ^ (a & c) ^ (b & c);
+    }
+
     // entry point for standalone testing
     public static void main(String[] args) {
         byte[] digest = hash("abc".getBytes(StandardCharsets.UTF_8));
@@ -103,15 +119,34 @@ public class SHA256 {
     }
 
     private static void compress(int[] state, int[] w) {
+        //save hash state
         int a = state[0], b = state[1], c = state[2], d = state[3];
         int e = state[4], f = state[5], g = state[6], h = state[7];
 
-        for (int i = 0; i< 64; i++) {
-            int S1 = rotr(e, 6) ^ rotr(e,11) ^ rotr(e,25);
-            in ch = 
-        }
-        // 64 rounds with a-h working vars, add result back into h
+        for (int i = 0; i < 64; i++) {
+            int temp1 = h + upsig1(e) + choice(e, f, g) + K[i] + w[i];
+            int temp2 = upsig0(a) + majority(a, b, c);
 
+            h = g;
+            g = f;
+            f = e;
+            e = d + temp1;
+            d = c;
+            c = b;
+            b = a;
+            a = temp1 + temp2;
+        }
+            // 3 feed forward
+            state[0] += a;
+            state[1] += b;
+            state[2] += c;
+            state[3] += d;
+            state[4] += e;
+            state[5] += f;
+            state[6] += g;
+            state[7] += h;
+
+        // 64 rounds with a-h working vars, add result back into h
 
     }
 
