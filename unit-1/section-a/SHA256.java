@@ -150,15 +150,21 @@ public class SHA256 {
 
     }
 
-    // ---- helpers ----
+    // -helpers
     private static int rotr(int x, int n) {
         return (x >>> n) | (x << (32 - n));
     }
 
     private static byte[] toBytes(int[] h) {
-        // 8 ints -> 32 bytes, big-endian
-        return null;
+    byte[] out = new byte[32];
+    for (int i = 0; i < 8; i++) {
+        out[4 * i]     = (byte) (h[i] >>> 24);
+        out[4 * i + 1] = (byte) (h[i] >>> 16);
+        out[4 * i + 2] = (byte) (h[i] >>> 8);
+        out[4 * i + 3] = (byte) (h[i]);
     }
+    return out;
+}
 
     private static String toHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
