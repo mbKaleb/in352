@@ -2,7 +2,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SHA256 {
 
-    // constants
+    // constants first 64 primes
     private static final int[] K = {
             0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
             0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
@@ -22,6 +22,7 @@ public class SHA256 {
             0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
     };
 
+    //initail hash roots of first 8 primes could put the salt here, maybe 
     private static final int[] H0 = {
             0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
             0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
@@ -52,12 +53,21 @@ public class SHA256 {
         return (a & b) ^ (a & c) ^ (b & c);
     }
 
-    // entry point for standalone testing
+    // entry point for standalone testing dont think I need this but eh
     public static void main(String[] args) {
-        byte[] digest = hash("abc".getBytes(StandardCharsets.UTF_8));
-        System.out.println(toHex(digest));
-        // cross-check: echo -n "abc" | sha256sum
+        for (int i = 0; i < args.length; i++) {
+            byte[] digest = hash(args[i].getBytes(StandardCharsets.UTF_8));
+            System.out.println("Input: " + args[i]);
+            System.out.println("Hash: " + toHex(digest));
+            if (i < args.length - 1)
+                System.out.println();
+        }
     }
+
+    public static String hashHex(String input) {
+        return toHex(hash(input.getBytes(StandardCharsets.UTF_8)));
+    }
+
 
     // public API
     public static byte[] hash(byte[] msg) {
@@ -119,7 +129,7 @@ public class SHA256 {
     }
 
     private static void compress(int[] state, int[] w) {
-        //save hash state
+        // save hash state
         int a = state[0], b = state[1], c = state[2], d = state[3];
         int e = state[4], f = state[5], g = state[6], h = state[7];
 
@@ -136,15 +146,15 @@ public class SHA256 {
             b = a;
             a = temp1 + temp2;
         }
-            // 3 feed forward
-            state[0] += a;
-            state[1] += b;
-            state[2] += c;
-            state[3] += d;
-            state[4] += e;
-            state[5] += f;
-            state[6] += g;
-            state[7] += h;
+        // 3 feed forward
+        state[0] += a;
+        state[1] += b;
+        state[2] += c;
+        state[3] += d;
+        state[4] += e;
+        state[5] += f;
+        state[6] += g;
+        state[7] += h;
 
         // 64 rounds with a-h working vars, add result back into h
 
@@ -156,17 +166,17 @@ public class SHA256 {
     }
 
     private static byte[] toBytes(int[] h) {
-    byte[] out = new byte[32];
-    for (int i = 0; i < 8; i++) {
-        out[4 * i]     = (byte) (h[i] >>> 24);
-        out[4 * i + 1] = (byte) (h[i] >>> 16);
-        out[4 * i + 2] = (byte) (h[i] >>> 8);
-        out[4 * i + 3] = (byte) (h[i]);
+        byte[] out = new byte[32];
+        for (int i = 0; i < 8; i++) {
+            out[4 * i] = (byte) (h[i] >>> 24);
+            out[4 * i + 1] = (byte) (h[i] >>> 16);
+            out[4 * i + 2] = (byte) (h[i] >>> 8);
+            out[4 * i + 3] = (byte) (h[i]);
+        }
+        return out;
     }
-    return out;
-}
 
-    private static String toHex(byte[] bytes) {
+    public static String toHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes)
             sb.append(String.format("%02x", b & 0xff));
