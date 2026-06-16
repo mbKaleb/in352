@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# need to chmod +x build
 # compile all sources from section-a and section-b into build/, then run Main
 
 set -e
