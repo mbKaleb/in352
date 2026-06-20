@@ -37,6 +37,8 @@ public class AVL {
         if (node == null ){
             return AVL(key, null, null, 1);
         }
+
+        x = 
         
 
         // node 
