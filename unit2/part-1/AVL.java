@@ -6,9 +6,17 @@ public class AVL {
     // in some sense the avl+ different trees -- is just a layer to decide how + when to rotate leaves
     // 
 
-    private int key;
+    private int key; 
+    // could use <T extence Comparable<T>> but we only have integer keys.
     private AVL left, right;
     private int height;
+
+    void AVL(int key) {
+        this .key = key;
+        this .left = null;
+        this .right = null;
+        this .height = 1;
+    }
 
     int getHeight(AVL node){
         if (node == null) return 0;
@@ -25,12 +33,19 @@ public class AVL {
     }
 
     // Rotations
-    void rotateRight(AVL node){
+    AVL rotateRight(AVL node){
+        if (node == null ){
+            return AVL(key, null, null, 1);
+        }
+        
 
         // node 
         // x = new head 
         // temp = x.right 
         // x.right = node
+        // at this point old head.left is guaranteed to be null/available for us since x was old heads.left
+        // oldhead.left = temp
+        // return new head
 
         // save old root
         // update new root to left child tree
@@ -40,6 +55,7 @@ public class AVL {
         // save new root right child
         // make old root new right child
         // 
+
     }
 
     // constructors
