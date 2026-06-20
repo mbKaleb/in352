@@ -1,6 +1,10 @@
 public class AVL {
 
-    // fields
+    // Notes for AVL
+    // for every node abs( height(left) - height(right) ) <= 1
+    // We can only place at leaves
+    // in some sense the avl+ different trees -- is just a layer to decide how + when to rotate leaves
+    // 
 
     private int key;
     private AVL left, right;
@@ -16,6 +20,27 @@ public class AVL {
         return getHeight(node.left) - getHeight(node.right);
     }
 
+    void updateHeight(AVL node){
+        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+    }
+
+    // Rotations
+    void rotateRight(AVL node){
+
+        // node 
+        // x = new head 
+        // temp = x.right 
+        // x.right = node
+
+        // save old root
+        // update new root to left child tree
+
+        // starting from left child as new root
+        // take new root, promote
+        // save new root right child
+        // make old root new right child
+        // 
+    }
 
     // constructors
 
