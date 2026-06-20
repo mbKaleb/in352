@@ -1,4 +1,4 @@
-# IN352 Advanced Software Development
+# IN352 Advanced Software Development in Java
 
 This repository is assignment materials, assignments, and samples for my work in IN352 Advanced Software Development in Java.
 
