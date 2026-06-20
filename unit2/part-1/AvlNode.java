@@ -1,44 +1,46 @@
-public class AVL {
+public class AvlNode {
 
-    // Notes for AVL
+    // Notes for AvlNode
     // for every node abs( height(left) - height(right) ) <= 1
     // We can only place at leaves
-    // in some sense the avl+ different trees -- is just a layer to decide how + when to rotate leaves
+    // in some sense the AvlNode+ different trees -- is just a layer to decide how + when to rotate leaves
     // 
 
     private int key; 
     // could use <T extence Comparable<T>> but we only have integer keys.
-    private AVL left, right;
+    private AvlNode left, right;
     private int height;
 
-    void AVL(int key) {
+    void AvlNode(int key) {
         this .key = key;
         this .left = null;
         this .right = null;
         this .height = 1;
     }
 
-    int getHeight(AVL node){
+    int getHeight(AvlNode node){
         if (node == null) return 0;
         return node.height;
     }
 
-    int getBalance(AVL node){
+    int getBalance(AvlNode node){
         if (node == null) return 0;
         return getHeight(node.left) - getHeight(node.right);
     }
 
-    void updateHeight(AVL node){
+    void updateHeight(AvlNode node){
         node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
     }
 
     // Rotations
-    AVL rotateRight(AVL node){
+    AvlNode rotateRight(AvlNode node){
         if (node == null ){
-            return AVL(key, null, null, 1);
+            return AvlNode(key, null, null, 1);
         }
 
-        x = 
+        if (node.left != null) {
+            AvlNode x = node.left;
+        }
         
 
         // node 
