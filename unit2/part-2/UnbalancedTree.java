@@ -35,6 +35,29 @@ public class UnbalancedTree {
         return key < node.key ? contains(node.left, key) : contains(node.right, key);
     }
 
+    void delete(int key) {
+        root = delete(root, key);
+    }
+
+    private TreeNode delete(TreeNode node, int key) {
+        if (node == null) return null;
+        if (key < node.key) {
+            node.left = delete(node.left, key);
+        } else if (key > node.key) {
+            node.right = delete(node.right, key);
+        } else {
+            // found
+            if (node.left == null || node.right == null) {
+                return (node.left != null) ? node.left : node.right; // 0 or 1 child
+            }
+            TreeNode succ = node.right;           // inorder successor = min of right subtree
+            while (succ.left != null) succ = succ.left;
+            node.key = succ.key;
+            node.right = delete(node.right, succ.key);
+        }
+        return node;
+    }
+
     static class TreeNode {
         int key;
         TreeNode left, right;
