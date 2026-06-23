@@ -23,9 +23,16 @@ public class AvlTree {
     //
 
     private Node root;
+    private boolean verbose;
 
     AvlTree() {
-        this .root = null;
+        this.root = null;
+        this.verbose = false;
+    }
+
+    AvlTree(boolean verbose) {
+        this.root = null;
+        this.verbose = verbose;
     }
 
     int getHeight(Node node){
@@ -60,6 +67,7 @@ public class AvlTree {
         // save new root right child
         // make old root new right child
         //
+        if (verbose) System.out.println("  Rotate Right on node " + root.key);
         Node left = root.left;
         Node temp = left.right;
 
@@ -75,6 +83,7 @@ public class AvlTree {
     Node rotateLeft(Node root){
         // mirror of rotateRight: right child becomes new head,
         // its left subtree gets handed to old head's right slot
+        if (verbose) System.out.println("  Rotate Left on node " + root.key);
         Node right = root.right;
         Node temp = right.left;
 
@@ -89,12 +98,14 @@ public class AvlTree {
 
     Node rotateLeftRight(Node node){
         // left child is right-heavy: straighten it out first, then rotate right
+        if (verbose) System.out.println("  Rotate Left-Right on node " + node.key);
         node.left = rotateLeft(node.left);
         return rotateRight(node);
     }
 
     Node rotateRightLeft(Node node){
         // right child is left-heavy: straighten it out first, then rotate left
+        if (verbose) System.out.println("  Rotate Right-Left on node " + node.key);
         node.right = rotateRight(node.right);
         return rotateLeft(node);
     }
@@ -133,7 +144,20 @@ public class AvlTree {
         return false;
     }
 
+    void inOrder() {
+        inOrder(root);
+        System.out.println();
+    }
+
+    private void inOrder(Node node) {
+        if (node == null) return;
+        inOrder(node.left);
+        System.out.print(node.key + " ");
+        inOrder(node.right);
+    }
+
     void insert(int key) {
+        if (verbose) System.out.println("Inserting: " + key);
         root = insert(root, key);
     }
 

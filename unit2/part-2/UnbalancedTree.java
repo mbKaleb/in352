@@ -35,6 +35,18 @@ public class UnbalancedTree {
         return key < node.key ? contains(node.left, key) : contains(node.right, key);
     }
 
+    void inOrder() {
+        inOrder(root);
+        System.out.println();
+    }
+
+    private void inOrder(TreeNode node) {
+        if (node == null) return;
+        inOrder(node.left);
+        System.out.print(node.key + " ");
+        inOrder(node.right);
+    }
+
     void delete(int key) {
         root = delete(root, key);
     }

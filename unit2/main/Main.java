@@ -1,7 +1,52 @@
 public class Main {
 
     public static void main(String[] args) {
+
+        part1();
+        part2();
         Part3.run();
+    }
+
+
+    static void part1(){
+        int[] data = {30, 20, 40, 10, 11, 12, 13, 9};
+ 
+        StringBuilder header = new StringBuilder("Inserting nodes: ");
+        for (int i = 0; i < data.length; i++) {
+            header.append(data[i]);
+            if (i < data.length - 1) header.append(", ");
+        }
+        System.out.println(header);
+        System.out.println();
+ 
+        AvlTree tree = new AvlTree(true);
+
+        for (int k : data) tree.insert(k);
+ 
+        System.out.println();
+        tree.inOrder();
+        System.out.println();
+
+        // InOrder Traversal
+    }
+
+    static void part2() {
+        int[] data = {30, 20, 40, 10, 11, 12, 13, 9};
+
+        StringBuilder header = new StringBuilder("Inserting nodes: ");
+        for (int i = 0; i < data.length; i++) {
+            header.append(data[i]);
+            if (i < data.length - 1) header.append(", ");
+        }
+        System.out.println(header);
+        System.out.println();
+
+        UnbalancedTree tree = new UnbalancedTree();
+        for (int k : data) tree.insert(k);
+
+        System.out.println();
+        tree.inOrder();
+        System.out.println();
     }
 
     // access modifiers
