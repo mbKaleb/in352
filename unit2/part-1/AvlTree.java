@@ -124,6 +124,15 @@ public class AvlTree {
         return node;
     }
 
+    boolean contains(int key) {
+        Node node = root;
+        while (node != null) {
+            if (key == node.key) return true;
+            node = key < node.key ? node.left : node.right;
+        }
+        return false;
+    }
+
     void insert(int key) {
         root = insert(root, key);
     }
