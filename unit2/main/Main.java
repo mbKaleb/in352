@@ -1,7 +1,9 @@
-package unit2.main;
-
 public class Main {
-    
+
+    public static void main(String[] args) {
+        Part3.run();
+    }
+
     // access modifiers
     // public private protected static
     // Encapsulation — bundling fields + methods together and hiding internal state behind a controlled interface (getters/setters, validation in setters, etc).
