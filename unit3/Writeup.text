@@ -1,0 +1,5 @@
+The initial thought is to try a greedy approach to solve graph traversal, by traversing to the closest node and checking against a visited list. This technique 
+
+The A* Search algorithm is a weighted graph traversal technique implemented with a priority queue and search heuristics. A start may find short paths when a good heurisitic is available. A start takes O (b^d) since frontier nodes must stay in memory, once chosen the frontiner node with the smallest estimated cost is added to the queue and will be processed in order. 
+
+Dijkstra's algorithm is a subset of A* search where each nodes has weight 0 and all traveral is backlined to produce the shortest path. Dijksta's algorithm does not take into consider negative weights and can produce incoherent cycles. Dijksta's algorithm can guarantee the shortest path to a node in a set. 
