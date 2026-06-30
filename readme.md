@@ -1,5 +1,7 @@
 # IN352 Advanced Software Development in Java
 
+Helpful note, you will need to `cd` into a specific unit, then run chmod +x ./build.sh and ./build.sh, if you would like to use the specific build script without issues. 
+
 This repository is assignment materials, assignments, and samples for my work in IN352 Advanced Software Development in Java.
 
 ## Contents
