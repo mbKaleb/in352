@@ -2,14 +2,14 @@
 import java.util.ArrayList;
 
 public class Node {
-        public ArrayList<Node> edges;
+        public ArrayList<NodePair> edges;
         public String name;
         int distance;
         Node previous;
 
         Node(String name) {
             this.name = name;
-            // this.edges = new ArrayList<Pair<Node, >>();
+            this.edges = new ArrayList<NodePair>();
             this.distance = Integer.MAX_VALUE;
             this.previous = null;
         }
