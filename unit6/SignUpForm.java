@@ -295,9 +295,27 @@ public class SignUpForm extends JFrame {
 
         if (valid) {
             UserStore.addUser(username, password);
-            JOptionPane.showMessageDialog(this, "Account created for " + name + "!", "Signed Up", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             if (onSuccess != null) onSuccess.run();
+
+            // Build comma-separated lists from checkboxes
+            StringBuilder langs = new StringBuilder();
+            for (JCheckBox cb : languageBoxes) if (cb.isSelected()) { if (langs.length() > 0) langs.append(", "); langs.append(cb.getText()); }
+            StringBuilder skillList = new StringBuilder();
+            for (JCheckBox cb : skillBoxes) if (cb.isSelected()) { if (skillList.length() > 0) skillList.append(", "); skillList.append(cb.getText()); }
+            StringBuilder deviceList = new StringBuilder();
+            for (JCheckBox cb : deviceBoxes) if (cb.isSelected()) { if (deviceList.length() > 0) deviceList.append(", "); deviceList.append(cb.getText()); }
+
+            RegistrationSummary summary = new RegistrationSummary(
+                username, name, ageText, email, phone, dob, address, zip,
+                (String) stateBox.getSelectedItem(),
+                (String) colorBox.getSelectedItem(),
+                (String) genderBox.getSelectedItem(),
+                (String) programBox.getSelectedItem(),
+                (String) contactBox.getSelectedItem(),
+                langs.toString(), skillList.toString(), deviceList.toString()
+            );
+            summary.setVisible(true);
         }
     }
 

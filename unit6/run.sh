@@ -1,18 +1,16 @@
 #!/bin/bash
 
-echo "Compiling..."
-javac UserStore.java LoginServer.java SignUpForm.java SignInForm.java
+mkdir -p build
+
+javac -d build UserStore.java LoginServer.java SignUpForm.java SignInForm.java RegistrationSummary.java
 if [ $? -ne 0 ]; then
-    echo "Compilation failed."
     exit 1
 fi
 
-echo "Starting login server..."
-java LoginServer &
+java -cp build LoginServer &
 SERVER_PID=$!
 sleep 1
 
-echo "Opening Sign In form..."
-java SignInForm
+java -cp build SignInForm
 
 kill $SERVER_PID
