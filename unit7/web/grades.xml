@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <name>Alice</name>
+        <grade>95</grade>
+    </student>
+    <student>
+        <name>Bob</name>
+        <grade>87</grade>
+    </student>
+    <student>
+        <name>Charlie</name>
+        <grade>92</grade>
+    </student>
+    <student>
+        <name>Diana</name>
+        <grade>88</grade>
+    </student>
+    <student>
+        <name>Eve</name>
+        <grade>91</grade>
+    </student>
+</students>
