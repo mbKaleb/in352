@@ -12,15 +12,15 @@ Simulated RESTful web service for real-time GPS location tracking and route opti
 
 ```bash
 ./build.sh
-java -cp build GpsDistanceService
-java -cp build RouteOptimizerService
-java -cp build RealTimeTrackingService
-java -cp build Test
+        java -cp build GpsDistanceService
+        java -cp build RouteOptimizerService
+        java -cp build RealTimeTrackingService
+        java -cp build Test
 ```
 
 ## Deploy
 
 ```bash
 ./deploy.sh
-java -jar deploy/Unit8App.jar
+        java -jar deploy/Unit8App.jar
 ```
