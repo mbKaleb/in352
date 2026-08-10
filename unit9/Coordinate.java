@@ -29,6 +29,10 @@ public class Coordinate {
         return new Coordinate(a, b);
     }
 
+    public getDelta(){
+        
+    }
+
     private double getRandomDelta(){
         int delta1 = randy.nextInt(5) -2;
         return (double) delta1 * 0.0001;
