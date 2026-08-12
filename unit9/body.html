@@ -3,29 +3,44 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Send Data</title>
+		<title>GPS Coordinate Corrector</title>
 	</head>
 	<body>
-		<!-- Super basic input that sends data to the backend -->
-		<form id="simple-form" action="/api/data" method="POST">
-			<label for="data-input">Data:</label>
-			<input id="data-input" name="data" type="text" placeholder="Enter text" required />
-			<button type="submit">Send</button>
+		<form id="gps-form">
+			<label for="lat-input">Latitude:</label>
+			<input id="lat-input" name="lat" type="number" step="any" placeholder="e.g. 40.7126" required />
+
+			<label for="lng-input">Longitude:</label>
+			<input id="lng-input" name="lng" type="number" step="any" placeholder="e.g. -74.0063" required />
+
+			<button type="submit">Correct Coordinates</button>
 		</form>
 
-		<!-- Optional: send via fetch to avoid full page reload -->
+		<div id="result"></div>
+
 		<script>
-			const form = document.getElementById('simple-form');
-			form.addEventListener('submit', async (e) => {
+			const LAT_CORRECTION = 0.00008;
+			const LNG_CORRECTION = 0.00018;
+
+			const form = document.getElementById('gps-form');
+			const result = document.getElementById('result');
+
+			form.addEventListener('submit', (e) => {
 				e.preventDefault();
-				const formData = new FormData(form);
-				// send as URL-encoded form data to the backend
-				await fetch(form.action, {
-					method: form.method,
-					body: new URLSearchParams(formData)
-				});
-				// simple feedback
-				alert('Sent');
+				const lat = Number(document.getElementById('lat-input').value);
+				const lng = Number(document.getElementById('lng-input').value);
+
+				if (Number.isNaN(lat) || Number.isNaN(lng)) {
+					result.innerHTML = '<p>Please enter numbers only.</p>';
+					return;
+				}
+
+				const correctedLat = lat + LAT_CORRECTION;
+				const correctedLng = lng + LNG_CORRECTION;
+
+				result.innerHTML =
+					'<p>Corrected Latitude: ' + correctedLat.toFixed(5) + '</p>' +
+					'<p>Corrected Longitude: ' + correctedLng.toFixed(5) + '</p>';
 			});
 		</script>
 	</body>

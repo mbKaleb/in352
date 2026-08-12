@@ -9,7 +9,7 @@ public class Coordinate {
     }
 
     public String display(){
-        return "Latitude: " + this.latitude + "\nLongitude: " + this.longitude;
+        return String.format("Latitude: %.5f\nLongitude: %.5f", this.latitude, this.longitude);
     }
 
     public double getLatitude(){
@@ -18,10 +18,6 @@ public class Coordinate {
     public double getLongitude(){
         return this.longitude;
     }
-    public void add(double lat, double lon){
-        this.latitude += lat;
-        this.longitude += lon;
-    }
 
     public Coordinate pingLocation(){
         double a = this.latitude +getRandomDelta();
@@ -29,12 +25,8 @@ public class Coordinate {
         return new Coordinate(a, b);
     }
 
-    public getDelta(){
-        
-    }
-
     private double getRandomDelta(){
-        int delta1 = randy.nextInt(5) -2;
+        int delta1 = randy.nextInt(11) -5;
         return (double) delta1 * 0.0001;
     }
     private double latitude;

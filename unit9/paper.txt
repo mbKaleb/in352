@@ -1,0 +1,45 @@
+Sources of GPS Error
+
+GPS carries errors from signal noise. Each fix carries error from several stacked sources. Ionospheric delay, from free electrons in the atmosphere, can delay the signal erratically [2]. Tropospheric delay comes from the neutral, non-ionized lower atmosphere; it has dry and wet components and is, critically, non-dispersive — neutral gases disperse radio waves equally at GPS frequencies [3].
+
+Satellite clock errors originate from onboard atomic clock drift. A timing error of ~3 nanoseconds compounds into a meter of range error. The control segment estimates each satellite's clock offset and broadcasts a polynomial correction in the navigation message [4].
+
+Ephemeris orbit error is the difference between a satellite's expected and actual orbit [1][4]. These four errors compound. The result is a position that wanders a few meters under clear sky, and tens of meters near tall buildings. A correction model leans on the fact that this error is partly predictable, with a limited, consistent set of features. Linear regression is a natural first candidate for the job: given a feature vector describing the conditions of a fix, predict the offset between the reported position and the true position, then apply the negative of that prediction as a correction.
+
+Training Data and Ground Truth
+
+This assignment trains the model on pairs of expected vs. actual position, so it needs a source of explicit ground truth to compute the training signal. Producing that truth is somewhat beyond the scope here, but one option would be a wifi-connected reference device paired with a second model of the router's position, which would let us generate a reward signal and optimize the correction model against it. Another option is a surveyed location, measured with exact, more traditional methods.
+
+Model Formulation
+
+In the linear space, we frame the problem in linear terms. Let n be the number of samples, d be the number of features, X be the feature matrix (n rows, d columns), and y be the target vector:
+
+y = Xβ + ε
+
+Fitting the model means solving for β. Once trained, β gives us a lookup: dot it with a new feature vector to get the expected offset for that fix, and the correction we apply is the negative of that offset.
+
+Processing Time
+
+Training cost is closed-form, not iterative. It solves via Gauss-Jordan elimination on X^T X no gradient descent with complexity O(n·d^2) plus O(d^3) [5]. That solve is done once per retrain and reused for every prediction until the next retrain, unlike a per-row method that would repeat comparable work on every sample.
+
+Performance and Scalability Evaluation
+
+Because the model trains on ten synthetic fixes with a single feature, timeOfDay, its measured accuracy says more about the shape of the experiment than about real GPS correction. The closed-form solve drives training residual toward zero whenever d is small relative to n, so the fit looks strong against the ten training rows, but with only ten samples and one predictor the model has little power to separate a genuine diurnal bias from the uniform random noise pingLocation injects. A linear model only recovers the systematic part of the four stacked error sources described above; clock drift and ephemeris error vary slowly and somewhat predictably, while ionospheric and tropospheric delay behave closer to stochastic given a single time feature, so timeOfDay alone should not be expected to explain them well. Scaling accuracy up means adding features that track the physical error terms directly — elevation angle, a TEC estimate, satellite count — and collecting enough surveyed fixes that the O(n·d^2 + d^3) fit stays cheap while n grows.
+
+Processing time is not a real-time concern for this design. Training runs once, or on a slow retrain cadence, and is dominated by the d^3 Gauss-Jordan solve on X^T X — trivial at d=1 and still cheap at the handful of features a real system would use. Inference is a single dot product, O(d) multiply-adds per fix, sub-microsecond and independent of n, so it keeps pace with a 1 Hz or faster GPS fix rate even on constrained receiver hardware, with none of the iteration-count uncertainty a gradient descent solver carries. The only latency risk is coupling retraining to the live fix loop; keeping the retrain step offline and asynchronous from prediction avoids that, at the cost of corrections lagging behind the newest surveyed drift.
+
+Conclusion
+
+This regression model shows that closed-form linear regression is a cheap, practical way to capture the systematic component of GPS position bias: training is a one-time O(n·d^2 + d^3) solve, and inference is a single fast dot product per fix. The limits seen here come from the toy setup — ten samples, one feature — rather than from the method itself; a deployment worth trusting would need more surveyed ground truth and a feature set tied to the physical error sources (elevation angle, TEC, satellite count) to separate genuine bias from noise.
+
+References
+
+[1] E. D. Kaplan and C. J. Hegarty, eds., Understanding GPS/GNSS: Principles and Applications, 3rd ed. Norwood, MA: Artech House, 2017.
+
+[2] J. A. Klobuchar, "Ionospheric Time-Delay Algorithm for Single-Frequency GPS Users," IEEE Transactions on Aerospace and Electronic Systems, vol. AES-23, no. 3, pp. 325-331, 1987.
+
+[3] J. Saastamoinen, "Atmospheric Correction for the Troposphere and Stratosphere in Radio Ranging of Satellites," in The Use of Artificial Satellites for Geodesy, Geophysical Monograph Series, vol. 15, American Geophysical Union, 1972, pp. 247-251.
+
+[4] GPS Directorate, IS-GPS-200, Revision N: NAVSTAR GPS Space Segment/Navigation User Segment Interfaces. U.S. Space Force, 2022. Available: https://www.navcen.uscg.gov/sites/default/files/pdf/gps/IS-GPS-200N.pdf
+
+[5] G. H. Golub and C. F. Van Loan, Matrix Computations, 4th ed. Baltimore, MD: Johns Hopkins University Press, 2013.
