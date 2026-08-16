@@ -1,5 +1,4 @@
 package com.example.taskmanager.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.configurers.userdetails.UserDetailsServiceConfigurer;
@@ -36,9 +35,18 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user); // associated user manager with in memory database
     }
 
-    @Bean 
-    public SecurityFilterChain secfilterchain(HttpSecurity http) throws Exception {
-        
-    }
+    @Bean  //define actual security policy, what urls need a login, what is public, what access level do we need?
+    // This specific method right now says anyone can hit /login /css/** or /js/** */
+    public SecurityFilterChain SFC(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> {
+                auth.requestMatchers("/login", "/css/**","/js/**").permitAll();
+                auth.anyRequest().authenticated();
+            })
+            .formLogin(form -> {
+                form.permitAll();
+            });
 
+        return http.build();
+    }
 }
