@@ -6,7 +6,7 @@
 - [x] Use Git for version control with regular, clearly-labeled commits
 
 ## Step 2: Core Functionality
-- [ ] User registration and login using Spring Security (mock API or in-memory credentials)
+- [] User registration and login using Spring Security (mock API or in-memory credentials)
 - [ ] Task creation with fields: title, description, due date, priority (Low/Medium/High)
 - [ ] Task dashboard view listing all tasks (card or table format)
 - [ ] Task editing and deletion
