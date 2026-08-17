@@ -7,10 +7,10 @@
 
 ## Step 2: Core Functionality
 - [x] User registration and login using Spring Security (mock API or in-memory credentials)
-- [ ] Task creation with fields: title, description, due date, priority (Low/Medium/High) — `Task` model has the fields, but no `POST /tasks` endpoint or creation form/template yet
+- [x] Task creation with fields: title, description, due date, priority (Low/Medium/High)
 - [x] Task dashboard view listing all tasks (card or table format)
-- [ ] Task editing and deletion — no edit/delete endpoints or templates
-- [ ] Filtering/searching tasks by status (completed, pending) and priority — repository methods exist (`findByUserAndStatus`/`findByUserAndPriority`) but not wired to controller or UI
+- [x] Task editing and deletion
+- [x] Filtering/searching tasks by status (completed, pending) and priority
 
 **Screenshots to capture:**
 - [ ] Registration/login screen — valid credentials
@@ -20,10 +20,10 @@
 - [ ] Dashboard view with tasks displayed and filter/search controls visible
 
 ## Step 3: UI/UX Design
-- [ ] Clean, user-friendly interface using CSS Grid or Flexbox
-- [ ] Mobile-responsive layout
-- [ ] Form validation for empty fields and invalid dates
-- [ ] Confirmation messages and alerts for errors
+- [x] Clean, user-friendly interface using CSS Grid or Flexbox
+- [x] Mobile-responsive layout
+- [x] Form validation for empty fields and invalid dates
+- [x] Confirmation messages and alerts for errors
 
 **Screenshots to capture:**
 - [ ] Responsive layout on desktop
