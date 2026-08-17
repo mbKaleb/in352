@@ -137,6 +137,7 @@ public class TaskController {
 
         if (result.hasErrors()) {
             model.addAttribute("taskId", id);
+            model.addAttribute("showErrorModal", true);
             return "taskform";
         }
 
