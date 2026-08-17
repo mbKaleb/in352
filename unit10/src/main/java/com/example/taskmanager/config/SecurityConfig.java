@@ -27,7 +27,7 @@ public class SecurityConfig {
                 auth.anyRequest().authenticated();
             })
             .formLogin(form -> {
-                form.permitAll();
+                form.loginPage("/login").permitAll();
             });
 
         return http.build();
