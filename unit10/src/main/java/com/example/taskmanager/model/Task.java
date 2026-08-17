@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Task {
@@ -20,9 +21,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user; // References a User entity, or remove @ManyToOne if storing raw String userId
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @NotBlank
     private String title;
@@ -35,6 +37,13 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.PENDING; // Default status for new entities
+
+    public enum Status {
+        PENDING, COMPLETED
+    }
+
     public enum Priority {
         LOW, MEDIUM, HIGH
     }
@@ -42,11 +51,14 @@ public class Task {
     public Task() {
     }
 
-    public Task(String title, String description, LocalDate dueDate, Priority priority) {
+    // status defaults to PENDING
+    public Task(User user, String title, String description, LocalDate dueDate, Priority priority) {
+        this.user = user;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.status = Status.PENDING;
     }
 
     // Getters and Setters
@@ -98,6 +110,14 @@ public class Task {
         this.priority = priority;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -106,6 +126,7 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", dueDate=" + dueDate +
                 ", priority=" + priority +
+                ", status=" + status +
                 '}';
     }
 }
