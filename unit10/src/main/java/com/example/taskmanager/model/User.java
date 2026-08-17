@@ -15,6 +15,8 @@ public class User {
     String password;
     String role; // "USER", "ADMIN"
 
+    public User() {} //Database needs this overload/signature for preload + reflection 
+
     public User(String username, String password, String role){
         this.username = username;
         this.password = password;
@@ -27,6 +29,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getRole() {
