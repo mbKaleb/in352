@@ -16,6 +16,7 @@ public class RegistrationController {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
+
     public RegistrationController(PasswordEncoder pEncoder, UserRepository uRepo){
         this.passwordEncoder = pEncoder;
         this.userRepository = uRepo;
@@ -30,6 +31,15 @@ public class RegistrationController {
     @PostMapping("/register") 
     
     public String postRegister(@RequestParam String  username, @RequestParam String password) {
+        if (username == null || username.isBlank() || username.length() < 6) {
+            return "redirect:/register?error";
+        }
+        if (userRepository.findByUsername(username).isPresent()){
+            return "redirect:/register?error";
+        }
+        if (password == null || password.isBlank() || password.length() < 12){
+            return "redirect:/register?error";
+        }
         
         String encoded = passwordEncoder.encode(password);
         User newUser = new User(username, encoded, "USER");

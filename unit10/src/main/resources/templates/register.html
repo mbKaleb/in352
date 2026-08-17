@@ -3,10 +3,10 @@
     <body>
         <!-- <div th:if="${param.success}">
             <p>Registration Complete.</p>
-        </div>
+        </div> could add to controller later -->
         <div th:if="${param.error}">
             <p>Invalid username or password.</p>
-        </div> could add to controller later-->
+        </div> 
         <form method="post" th:action="@{/register}">
             <input name="username" placeholder="Username">
             <input name="password" type="password" placeholder="Password">
