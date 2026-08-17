@@ -33,10 +33,10 @@
 - [ ] Error modal: "✖ please fill all required fields"
 
 ## Step 4: Error Handling and Logging
-- [ ] `@ControllerAdvice` for exception handling — none found
-- [ ] Log major events (logins, task creation, API failures) via SLF4J — no `Logger`/`Slf4j` usage yet, despite log config in `application.properties`
-- [ ] Clear error messages displayed on frontend
-- [ ] Validate all user inputs on both frontend and backend — `@NotNull`/`@NotBlank`/`@FutureOrPresent` present on `Task`/`User` models, but no `@Valid`/`BindingResult` in controllers to enforce them
+- [x] `@ControllerAdvice` for exception handling — `GlobalExceptionHandler` catches `NoSuchElementException`, `UsernameNotFoundException`, generic `Exception`
+- [x] Log major events (logins, task creation, API failures) via SLF4J — `TaskController`, `RegistrationController`, `AuthenticationEventLogger`, `GlobalExceptionHandler`
+- [x] Clear error messages displayed on frontend — error toast on dashboard, login/register error messages, task form field errors
+- [x] Validate all user inputs on both frontend and backend — `@NotNull`/`@NotBlank`/`@FutureOrPresent` on `Task`/`User` models, enforced via `@Valid`/`BindingResult` in `TaskController` (`createTask`, `updateTask`)
 
 **Screenshots to capture:**
 - [ ] Logged error message in console or log file
