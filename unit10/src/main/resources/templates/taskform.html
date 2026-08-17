@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::main})}">
+<head>
+    <title>New Task</title>
+</head>
+<body>
+
+    <main>
+        <h3>Create Task</h3>
+
+        <form th:action="@{/tasks}" th:object="${taskForm}" method="post">
+            <div>
+                <input type="text" th:field="*{title}" placeholder="Title">
+                <p th:if="${#fields.hasErrors('title')}" style="color: red;" th:errors="*{title}">Title error</p>
+            </div>
+            <div>
+                <textarea th:field="*{description}" placeholder="Description"></textarea>
+            </div>
+            <div>
+                <input type="date" th:field="*{dueDate}">
+                <p th:if="${#fields.hasErrors('dueDate')}" style="color: red;" th:errors="*{dueDate}">Due date error</p>
+            </div>
+            <div>
+                <select th:field="*{priority}">
+                    <option value="">-- Select Priority --</option>
+                    <option th:each="p : ${T(com.example.taskmanager.model.Task.Priority).values()}"
+                            th:value="${p}"
+                            th:text="${p}">
+                    </option>
+                </select>
+                <p th:if="${#fields.hasErrors('priority')}" style="color: red;" th:errors="*{priority}">Priority error</p>
+            </div>
+            <button type="submit">Create Task</button>
+        </form>
+    </main>
+
+</body>
+</html>

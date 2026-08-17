@@ -27,7 +27,8 @@ public class SecurityConfig {
                 auth.anyRequest().authenticated();
             })
             .formLogin(form -> {
-                form.loginPage("/login").permitAll();
+                form.loginPage("/login").permitAll()
+                    .defaultSuccessUrl("/dashboard", true);
             });
 
         return http.build();

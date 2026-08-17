@@ -6,11 +6,11 @@
 - [x] Use Git for version control with regular, clearly-labeled commits
 
 ## Step 2: Core Functionality
-- [] User registration and login using Spring Security (mock API or in-memory credentials)
-- [ ] Task creation with fields: title, description, due date, priority (Low/Medium/High)
-- [ ] Task dashboard view listing all tasks (card or table format)
-- [ ] Task editing and deletion
-- [ ] Filtering/searching tasks by status (completed, pending) and priority
+- [x] User registration and login using Spring Security (mock API or in-memory credentials)
+- [ ] Task creation with fields: title, description, due date, priority (Low/Medium/High) — `Task` model has the fields, but no `POST /tasks` endpoint or creation form/template yet
+- [x] Task dashboard view listing all tasks (card or table format)
+- [ ] Task editing and deletion — no edit/delete endpoints or templates
+- [ ] Filtering/searching tasks by status (completed, pending) and priority — repository methods exist (`findByUserAndStatus`/`findByUserAndPriority`) but not wired to controller or UI
 
 **Screenshots to capture:**
 - [ ] Registration/login screen — valid credentials
@@ -33,10 +33,10 @@
 - [ ] Error modal: "✖ please fill all required fields"
 
 ## Step 4: Error Handling and Logging
-- [ ] `@ControllerAdvice` for exception handling
-- [ ] Log major events (logins, task creation, API failures) via SLF4J
+- [ ] `@ControllerAdvice` for exception handling — none found
+- [ ] Log major events (logins, task creation, API failures) via SLF4J — no `Logger`/`Slf4j` usage yet, despite log config in `application.properties`
 - [ ] Clear error messages displayed on frontend
-- [ ] Validate all user inputs on both frontend and backend
+- [ ] Validate all user inputs on both frontend and backend — `@NotNull`/`@NotBlank`/`@FutureOrPresent` present on `Task`/`User` models, but no `@Valid`/`BindingResult` in controllers to enforce them
 
 **Screenshots to capture:**
 - [ ] Logged error message in console or log file
@@ -44,9 +44,9 @@
 - [ ] Validation failure shown via Java annotations (`@NotNull`, etc.)
 
 ## Step 5: API Optimization and External Integration
-- [ ] Paginate task listings (10 tasks per page)
-- [ ] Use a public date/time API to timestamp tasks
-- [ ] Use a weather API to display current weather on dashboard
+- [ ] Paginate task listings (10 tasks per page) — controller returns a plain `List<Task>`, no `Pageable`
+- [ ] Use a public date/time API to timestamp tasks — `datetime.api.url` configured but no client code calls it
+- [ ] Use a weather API to display current weather on dashboard — `weather.api.url`/key placeholders configured but no client code calls it
 
 **Screenshots to capture:**
 - [ ] Paginated task list showing navigation between pages
@@ -54,7 +54,7 @@
 - [ ] Weather API data embedded in dashboard
 
 ## Step 6: Project Structure and Documentation
-- [ ] Standardized project structure:
+- [x] Standardized project structure:
   ```
   src/main/java/com/example/taskmanager/
   ├── controller/
