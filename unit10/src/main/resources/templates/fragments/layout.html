@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="layout(content)">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
@@ -12,8 +13,8 @@
         <div>
             <h2>Task Manager</h2>
             <a th:href="@{/dashboard}">Dashboard</a>
-            <a th:href="@{/register}">Register</a>
-            <form th:action="@{/logout}" method="post">
+            <a th:href="@{/register}" sec:authorize="isAnonymous()">Register</a>
+            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
                 <button type="submit">Logout</button>
             </form>
         </div>

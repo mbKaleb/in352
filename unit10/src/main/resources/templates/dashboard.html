@@ -8,6 +8,23 @@
 
     <main>
         <h3>My Task Dashboard</h3>
+        <a th:href="@{/tasks/new}" class="btn new-task-link">+ New Task</a>
+
+        <!-- Filter controls -->
+        <form th:action="@{/dashboard}" method="get" class="filter-bar">
+            <select name="status" onchange="this.form.submit()">
+                <option value="">All Statuses</option>
+                <option value="PENDING" th:selected="${status != null and status.name() == 'PENDING'}">Pending</option>
+                <option value="COMPLETED" th:selected="${status != null and status.name() == 'COMPLETED'}">Completed</option>
+            </select>
+            <select name="priority" onchange="this.form.submit()">
+                <option value="">All Priorities</option>
+                <option value="LOW" th:selected="${priority != null and priority.name() == 'LOW'}">Low</option>
+                <option value="MEDIUM" th:selected="${priority != null and priority.name() == 'MEDIUM'}">Medium</option>
+                <option value="HIGH" th:selected="${priority != null and priority.name() == 'HIGH'}">High</option>
+            </select>
+            <noscript><button type="submit">Filter</button></noscript>
+        </form>
 
         <!-- Display message if no tasks exist -->
         <div th:if="${#lists.isEmpty(tasks)}">
@@ -15,26 +32,41 @@
         </div>
 
         <!-- Task Table -->
-        <table border="1" th:unless="${#lists.isEmpty(tasks)}">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Due Date</th>
-                    <th>Priority</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="task : ${tasks}">
-                    <td th:text="${task.title}">Sample Title</td>
-                    <td th:text="${task.description}">Sample Description</td>
-                    <td th:text="${task.dueDate != null ? task.dueDate : 'No due date'}">2026-08-20</td>
-                    <td th:text="${task.priority}">MEDIUM</td>
-                    <td th:text="${task.status}">PENDING</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-wrapper" th:unless="${#lists.isEmpty(tasks)}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="task : ${tasks}">
+                        <td th:text="${task.title}">Sample Title</td>
+                        <td th:text="${task.description}">Sample Description</td>
+                        <td th:text="${task.dueDate != null ? task.dueDate : 'No due date'}">2026-08-20</td>
+                        <td th:text="${task.priority}">MEDIUM</td>
+                        <td th:text="${task.status}">PENDING</td>
+                        <td>
+                            <a th:href="@{'/tasks/' + ${task.id} + '/edit'}">Edit</a>
+                            <form th:action="@{'/tasks/' + ${task.id} + '/delete'}" method="post" style="display:inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Success toast: shown after redirect from task creation -->
+        <div class="toast" th:if="${successMessage}" th:text="${successMessage}">Task created!</div>
+
+        <!-- Error toast: shown after redirect from GlobalExceptionHandler -->
+        <div class="toast toast-error" th:if="${errorMessage}" th:text="${errorMessage}">Something went wrong!</div>
     </main>
 
 </body>

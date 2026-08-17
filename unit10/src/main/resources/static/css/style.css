@@ -1,7 +1,298 @@
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --danger: #dc2626;
+    --danger-dark: #b91c1c;
+    --success: #16a34a;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* --- Nav --- */
+nav {
+    width: 100%;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+}
+
+nav > div {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+}
+
+nav h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+nav a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav form {
+    margin-left: auto;
+}
+
+hr {
+    display: none;
+}
+
+/* --- Layout --- */
+main {
+    width: 100%;
+    max-width: 960px;
+    padding: 2rem 1.5rem;
+}
+
+main h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+/* --- Cards (auth / form pages) --- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 420px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Forms --- */
+form div {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+input, textarea, select {
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: var(--card-bg);
+    color: var(--text);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* --- Buttons --- */
+button, .btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-dark);
+}
+
+.btn-link {
+    background: none;
+    color: var(--primary);
+    padding: 0.55rem 0.4rem;
+}
+
+.btn-link:hover {
+    background: none;
+    text-decoration: underline;
+}
+
+/* --- Filter bar --- */
+.new-task-link {
+    margin: 0.5rem 0 1rem;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1rem 0 1.5rem;
+}
+
+.filter-bar select {
+    max-width: 180px;
+}
+
+/* --- Table --- */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 0.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th, td {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background-color: var(--bg);
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: var(--bg);
+}
+
+td form {
+    display: inline;
+    margin: 0;
+}
+
+/* --- Toast: bottom-right success confirmation --- */
+.toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background-color: var(--success);
+    color: white;
+    padding: 0.85rem 1.4rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+
+.toast.toast-error {
+    background-color: var(--danger);
+}
+
+/* --- Modal: centered error dialog --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.modal-box {
+    background-color: var(--card-bg);
+    color: var(--danger);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    max-width: 90%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+
+/* --- Status / priority badges --- */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-high { background-color: #fee2e2; color: #b91c1c; }
+.badge-medium { background-color: #fef3c7; color: #92400e; }
+.badge-low { background-color: #dcfce7; color: #166534; }
+.badge-pending { background-color: #e0e7ff; color: #3730a3; }
+.badge-completed { background-color: #dcfce7; color: #166534; }
+
+@media (max-width: 600px) {
+    nav > div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav form {
+        margin-left: 0;
+    }
+
+    input, textarea, select {
+        max-width: 100%;
+    }
+
+    .card {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
 }
