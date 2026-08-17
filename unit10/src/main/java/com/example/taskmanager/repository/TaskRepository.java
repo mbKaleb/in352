@@ -1,34 +1,22 @@
 package com.example.taskmanager.repository;
 
-import com.example.taskmanager.model.Task;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
+import com.example.taskmanager.model.Task.Status;
+import com.example.taskmanager.model.Task.Priority;
+
+import com.example.taskmanager.model.Task;
+import com.example.taskmanager.model.User;
 
 @Repository
-public class TaskRepository {
-    private final Map<Long, Task> tasks = new ConcurrentHashMap<>();
-    private final AtomicLong idGenerator = new AtomicLong(1);
+public interface TaskRepository extends JpaRepository<Task, String> {
+    
+    List<Task> findByUser(User user);
+    List<Task> findByUserId(String id);
+    List<Task> findByUserAndStatus(User user, Status status);
+    List<Task> findByUserAndPriority(User user, Priority priority);
 
-    public List<Task> findAll() {
-        return new ArrayList<>(tasks.values());
-    }
-
-    public Optional<Task> findById(Long id) {
-        return Optional.ofNullable(tasks.get(id));
-    }
-
-    public Task save(Task task) {
-        if (task.getId() == null) {
-            task.setId(idGenerator.getAndIncrement());
-        }
-        tasks.put(task.getId(), task);
-        return task;
-    }
-
-    public boolean deleteById(Long id) {
-        return tasks.remove(id) != null;
-    }
 }
