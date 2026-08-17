@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+</head>
+
+<body>
+    <nav>
+        <div>
+            <h2>Task Manager</h2>
+            <a th:href="@{/dashboard}">Dashboard</a>
+            <a th:href="@{/register}">Register</a>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </nav>
+    <hr>
+    <main th:replace="${content}">
+        <p>Default content gets replaced here.</p>
+    </main>
+
+</body>
+
+</html>

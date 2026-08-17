@@ -1,27 +1,34 @@
-<html xmlns:th="http://www.thymeleaf.org" >
-    <head></head>
-    <body>
-        <!-- <div th:if="${param.success}">
-            <p>Registration Complete.</p>
-        </div> could add to controller later -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="~{fragments/layout :: layout(~{::main})}">
+<head>
+    <title>Register</title>
+</head>
+<body>
+
+    <main>
+        <h3>Create an Account</h3>
+
         <div th:if="${param.error}">
-            <p>Invalid username or password.</p>
-        </div> 
-        <form method="post" th:action="@{/register}">
-            <input name="username" placeholder="Username">
-            <input name="password" type="password" placeholder="Password">
+            <p style="color: red;">Registration failed. Username may already be taken or inputs were invalid.</p>
+        </div>
+
+        <div th:if="${param.success}">
+            <p style="color: green;">Registration complete! You can now log in.</p>
+        </div>
+
+        <form th:action="@{/register}" method="post">
+            <div>
+                <input name="username" placeholder="Username" required>
+            </div>
+            <div>
+                <input name="password" type="password" placeholder="Password" required>
+            </div>
             <button type="submit">Register</button>
         </form>
-    </body>
-    
+
+        <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+    </main>
+
+</body>
 </html>
-<!-- names must match @RequestParam on the controller -->
- <!-- Might need CSRF token not sure -->
-
-
- <!-- param is the built in expression object, it gives us read access to the current requests query string paramaters like ?key=value of the url -->
-
-
- <!-- xmlns, the XML namespace  -->
-
- <!-- @{}  thymeleaf url-->

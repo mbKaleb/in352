@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="~{fragments/layout :: layout(~{::main})}">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <main>
+        <h3>My Task Dashboard</h3>
+
+        <!-- Display message if no tasks exist -->
+        <div th:if="${#lists.isEmpty(tasks)}">
+            <p>No tasks found. Time to relax!</p>
+        </div>
+
+        <!-- Task Table -->
+        <table border="1" th:unless="${#lists.isEmpty(tasks)}">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Due Date</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.title}">Sample Title</td>
+                    <td th:text="${task.description}">Sample Description</td>
+                    <td th:text="${task.dueDate != null ? task.dueDate : 'No due date'}">2026-08-20</td>
+                    <td th:text="${task.priority}">MEDIUM</td>
+                    <td th:text="${task.status}">PENDING</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>
