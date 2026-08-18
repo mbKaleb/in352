@@ -24,6 +24,16 @@
         <p>Default content gets replaced here.</p>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.toast').forEach(function (toast, index) {
+                setTimeout(function () {
+                    toast.classList.add('toast-hide');
+                    setTimeout(function () { toast.remove(); }, 300);
+                }, 3000 + index * 300);
+            });
+        });
+    </script>
 </body>
 
 </html>
