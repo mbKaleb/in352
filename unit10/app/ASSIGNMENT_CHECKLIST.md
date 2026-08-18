@@ -44,9 +44,9 @@
 - [ ] Validation failure shown via Java annotations (`@NotNull`, etc.)
 
 ## Step 5: API Optimization and External Integration
-- [ ] Paginate task listings (10 tasks per page) — controller returns a plain `List<Task>`, no `Pageable`
-- [ ] Use a public date/time API to timestamp tasks — `datetime.api.url` configured but no client code calls it
-- [ ] Use a weather API to display current weather on dashboard — `weather.api.url`/key placeholders configured but no client code calls it
+- [x] Paginate task listings (10 tasks per page) — `TaskController.getDashboard` uses `Pageable`/`Page<Task>`, `TaskRepository` has paged finder methods, `dashboard.html` renders page nav
+- [x] Use a public date/time API to timestamp tasks — `DateTimeService` calls it, rendered on dashboard via `currentDateTime`
+- [x] Use a weather API to display current weather on dashboard — `WeatherService` calls weatherapi.com, rendered on dashboard via `currentWeather`
 
 **Screenshots to capture:**
 - [ ] Paginated task list showing navigation between pages
