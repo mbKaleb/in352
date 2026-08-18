@@ -6,6 +6,11 @@ target/
 !**/src/test/**/target/
 etc/
 *.log
+logs/
+data/
+application.properties
+
+
 
 ### STS ###
 .apt_generated
