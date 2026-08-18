@@ -24,7 +24,8 @@ Task tracker built for IN352 Unit 10. Spring Boot backend, Thymeleaf frontend.
    ```
    weather.api.key=your_key_here
    ```
-4. No database setup needed. It uses a file-based H2 database that gets created automatically at `data/taskdb` the first time you run the app.
+4. No database setup needed. We used a file-based H2 database that gets created automatically at `data/taskdb` the first time you run the app.
+
 5. Default port is 8080. If something else is already using it, change `server.port` in `application.properties`.
 
 ## Running it
