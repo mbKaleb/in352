@@ -17,6 +17,11 @@
             <p>Invalid username or password.</p>
         </dialog>
 
+        <dialog class="modal-dialog" th:if="${errorMessage}">
+            <form method="dialog"><button class="modal-close" aria-label="Close">&times;</button></form>
+            <p th:text="${errorMessage}">Something went wrong!</p>
+        </dialog>
+
         <form th:action="@{/login}" method="post">
             <div>
                 <input name="username" placeholder="Username" required>
