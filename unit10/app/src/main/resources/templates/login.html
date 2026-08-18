@@ -12,7 +12,7 @@
         <div th:if="${param.logout}">
             <p style="color: green;">You have been logged out successfully.</p>
         </div>
-        <dialog class="modal-dialog" th:if="${param.error}">
+        <dialog class="modal-dialog" th:if="${error}">
             <form method="dialog"><button class="modal-close" aria-label="Close">&times;</button></form>
             <p>Invalid username or password.</p>
         </dialog>
@@ -24,10 +24,10 @@
 
         <form th:action="@{/login}" method="post">
             <div>
-                <input name="username" placeholder="Username" required>
+                <input name="username" placeholder="Username" autocomplete="username" required>
             </div>
             <div>
-                <input name="password" type="password" placeholder="Password" required>
+                <input name="password" type="password" placeholder="Password" autocomplete="current-password" required>
             </div>
             <button type="submit">Login</button>
         </form>

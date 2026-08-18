@@ -23,11 +23,12 @@ public class SecurityConfig {
     public SecurityFilterChain SFC(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/register", "/login", "/css/**","/js/**").permitAll();
+                auth.requestMatchers("/register", "/login", "/login-error", "/css/**","/js/**").permitAll();
                 auth.anyRequest().authenticated();
             })
             .formLogin(form -> {
                 form.loginPage("/login").permitAll()
+                    .failureForwardUrl("/login-error")
                     .defaultSuccessUrl("/dashboard", true);
             });
 

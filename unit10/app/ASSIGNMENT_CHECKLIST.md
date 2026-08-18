@@ -13,11 +13,11 @@
 - [x] Filtering/searching tasks by status (completed, pending) and priority
 
 **Screenshots to capture:**
-- [ ] Registration/login screen — valid credentials
-- [ ] Registration/login screen — invalid credentials
-- [ ] Task creation form — completed inputs (buy milk, 2 packs, due 6/20/25, High priority)
-- [ ] Task creation form — incomplete inputs
-- [ ] Dashboard view with tasks displayed and filter/search controls visible
+- [x] Registration/login screen — valid credentials
+- [x] Registration/login screen — invalid credentials
+- [x] Task creation form — completed inputs (buy milk, 2 packs, due 6/20/25, High priority)
+- [x] Task creation form — incomplete inputs
+- [x] Dashboard view with tasks displayed and filter/search controls visible
 
 ## Step 3: UI/UX Design
 - [x] Clean, user-friendly interface using CSS Grid or Flexbox
@@ -26,11 +26,11 @@
 - [x] Confirmation messages and alerts for errors
 
 **Screenshots to capture:**
-- [ ] Responsive layout on desktop
-- [ ] Form validation — successful case
-- [ ] Form validation — failed case (title required, description "groceries", due date 1/1/23, must reject past date)
-- [ ] Success toast (bottom right): "Task 'buy milk' was created!"
-- [ ] Error modal: "please fill all required fields"
+- [x] Responsive layout on desktop
+- [x] Form validation — successful case
+- [x] Form validation — failed case (title required, description "groceries", due date 1/1/23, must reject past date)
+- [x] Success toast (bottom right): "Task 'buy milk' was created!"
+- [x] Error modal: "please fill all required fields"
 
 ## Step 4: Error Handling and Logging
 - [x] `@ControllerAdvice` for exception handling — `GlobalExceptionHandler` catches `NoSuchElementException`, `UsernameNotFoundException`, generic `Exception`
@@ -49,9 +49,9 @@
 - [x] Use a weather API to display current weather on dashboard — `WeatherService` calls weatherapi.com, rendered on dashboard via `currentWeather`
 
 **Screenshots to capture:**
-- [ ] Paginated task list showing navigation between pages
-- [ ] Date/time API response displayed in UI
-- [ ] Weather API data embedded in dashboard
+- [X] Paginated task list showing navigation between pages
+- [X] Date/time API response displayed in UI
+- [X] Weather API data embedded in dashboard
 
 ## Step 6: Project Structure and Documentation
 - [x] Standardized project structure:
@@ -70,8 +70,8 @@
 
 **Screenshots to capture:**
 - [ ] Project folder structure
-- [ ] Snippet of application.properties with API key
-- [ ] README file
+- [x] Snippet of application.properties with API key
+- [x] README file
 
 ## Submission Package
 - [ ] Complete Java Spring Boot project directory (builds and runs without errors)
