@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.taskmanager.model.User;
 
@@ -35,17 +36,21 @@ public class RegistrationController {
     
     @PostMapping("/register") 
     
-    public String postRegister(@RequestParam String  username, @RequestParam String password) {
+    public String postRegister(@RequestParam String  username, @RequestParam String password,
+                                RedirectAttributes redirectAttributes) {
         if (username == null || username.isBlank() || username.length() < 6) {
             log.warn("Registration rejected: username missing or too short");
+            redirectAttributes.addFlashAttribute("username", username);
             return "redirect:/register?error";
         }
         if (userRepository.findByUsername(username).isPresent()){
             log.warn("Registration rejected: username '{}' already taken", username);
+            redirectAttributes.addFlashAttribute("username", username);
             return "redirect:/register?error";
         }
         if (password == null || password.isBlank() || password.length() < 12){
             log.warn("Registration rejected for user '{}': password missing or too short", username);
+            redirectAttributes.addFlashAttribute("username", username);
             return "redirect:/register?error";
         }
 

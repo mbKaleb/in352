@@ -86,8 +86,11 @@
         <!-- Success toast: shown after redirect from task creation -->
         <div class="toast" th:if="${successMessage}" th:text="${successMessage}">Task created!</div>
 
-        <!-- Error toast: shown after redirect from GlobalExceptionHandler -->
-        <div class="toast toast-error" th:if="${errorMessage}" th:text="${errorMessage}">Something went wrong!</div>
+        <!-- Error modal: shown after redirect from GlobalExceptionHandler -->
+        <dialog class="modal-dialog" th:if="${errorMessage}">
+            <form method="dialog"><button class="modal-close" aria-label="Close">&times;</button></form>
+            <p th:text="${errorMessage}">Something went wrong!</p>
+        </dialog>
     </main>
 
 </body>

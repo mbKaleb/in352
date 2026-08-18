@@ -9,9 +9,10 @@
     <main>
         <h3>Create an Account</h3>
 
-        <div th:if="${param.error}">
-            <p style="color: red;">Registration failed. Username may already be taken or inputs were invalid.</p>
-        </div>
+        <dialog class="modal-dialog" th:if="${param.error}">
+            <form method="dialog"><button class="modal-close" aria-label="Close">&times;</button></form>
+            <p>Registration failed. Username may already be taken or inputs were invalid.</p>
+        </dialog>
 
         <div th:if="${param.success}">
             <p style="color: green;">Registration complete! You can now log in.</p>
@@ -19,10 +20,12 @@
 
         <form th:action="@{/register}" method="post">
             <div>
-                <input name="username" placeholder="Username" required>
+                <input name="username" th:value="${username}" placeholder="Username" required minlength="6"
+                       title="Username must be at least 6 characters">
             </div>
             <div>
-                <input name="password" type="password" placeholder="Password" required>
+                <input name="password" type="password" placeholder="Password" required minlength="12"
+                       title="Password must be at least 12 characters">
             </div>
             <button type="submit">Register</button>
         </form>

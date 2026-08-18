@@ -32,6 +32,10 @@
                     setTimeout(function () { toast.remove(); }, 300);
                 }, 3000 + index * 300);
             });
+
+            document.querySelectorAll('dialog.modal-dialog').forEach(function (dialog) {
+                dialog.showModal();
+            });
         });
     </script>
 </body>

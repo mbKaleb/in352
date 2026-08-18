@@ -187,5 +187,3 @@ The Microsoft Word document with all screenshots
 The Visio flowchart file
 The README.md file
 Name your assignment document according to this convention: IN352_<YourLastName>_Unit10. Submit your completed assignment to the Unit 10 Assignment Dropbox by the end of the unit.
-
-Review the rubric before beginning this activit
