@@ -66,7 +66,7 @@
   ├── static/
   └── application.properties
   ```
-- [ ] Design flowchart (MS Visio) showing key workflows: user registration, task creation, filtering logic
+- [x] Design flowchart showing key workflows: user registration, task creation, filtering logic — `Workflows.drawio` (draw.io flowchart, same diagram shape as MS Visio; covers login/register, create/edit task with validation, and filter/delete logic)
 
 **Screenshots to capture:**
 - [ ] Project folder structure
