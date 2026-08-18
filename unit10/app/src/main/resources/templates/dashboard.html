@@ -8,6 +8,13 @@
 
     <main>
         <h3>My Task Dashboard</h3>
+
+        <!-- External API info bar: current server time + current weather -->
+        <div class="info-bar">
+            <span th:if="${currentDateTime}" th:text="'🕐 ' + ${currentDateTime}">🕐 2026-08-17T12:00:00</span>
+            <span th:if="${currentWeather}" th:text="'🌤 ' + ${currentWeather}">🌤 New York: 72°F, Sunny</span>
+        </div>
+
         <a th:href="@{/tasks/new}" class="btn new-task-link">+ New Task</a>
 
         <!-- Filter controls -->
@@ -61,6 +68,20 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Pagination controls -->
+        <nav class="pagination" th:if="${totalPages > 1}">
+            <a th:if="${currentPage > 0}"
+               th:href="@{/dashboard(page=${currentPage - 1}, status=${status}, priority=${priority})}">&laquo; Prev</a>
+            <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+                <a th:if="${i != currentPage}"
+                   th:href="@{/dashboard(page=${i}, status=${status}, priority=${priority})}"
+                   th:text="${i + 1}">1</a>
+                <strong th:if="${i == currentPage}" th:text="${i + 1}">1</strong>
+            </span>
+            <a th:if="${currentPage < totalPages - 1}"
+               th:href="@{/dashboard(page=${currentPage + 1}, status=${status}, priority=${priority})}">Next &raquo;</a>
+        </nav>
 
         <!-- Success toast: shown after redirect from task creation -->
         <div class="toast" th:if="${successMessage}" th:text="${successMessage}">Task created!</div>
