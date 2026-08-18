@@ -1,10 +1,13 @@
 package com.example.taskmanager.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,8 @@ import com.example.taskmanager.model.TaskForm;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.repository.TaskRepository;
 import com.example.taskmanager.repository.UserRepository;
+import com.example.taskmanager.service.DateTimeService;
+import com.example.taskmanager.service.WeatherService;
 
 import jakarta.validation.Valid;
 
@@ -33,16 +38,24 @@ public class TaskController {
 
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
+    private final DateTimeService dateTimeService;
+    private final WeatherService weatherService;
 
-    public TaskController(TaskRepository taskRepository, UserRepository userRepository) {
+    public TaskController(TaskRepository taskRepository, UserRepository userRepository,
+                           DateTimeService dateTimeService, WeatherService weatherService) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
+        this.dateTimeService = dateTimeService;
+        this.weatherService = weatherService;
     }
+
+    private static final int PAGE_SIZE = 10;
 
     @GetMapping("/dashboard")
     public String getDashboard(Principal principal, Model model,
                                 @RequestParam(required = false) Status status,
-                                @RequestParam(required = false) Priority priority) {
+                                @RequestParam(required = false) Priority priority,
+                                @RequestParam(defaultValue = "0") int page) {
         if (principal == null) {
             return "redirect:/login";
         }
@@ -50,17 +63,23 @@ public class TaskController {
         User user = userRepository.findByUsername(principal.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + principal.getName()));
 
-        List<Task> tasks;
+        Pageable pageable = PageRequest.of(Math.max(page, 0), PAGE_SIZE, Sort.by("dueDate").ascending());
+
+        Page<Task> tasks;
         if (status != null) {
-            tasks = taskRepository.findByUserAndStatus(user, status);
+            tasks = taskRepository.findByUserAndStatus(user, status, pageable);
         } else if (priority != null) {
-            tasks = taskRepository.findByUserAndPriority(user, priority);
+            tasks = taskRepository.findByUserAndPriority(user, priority, pageable);
         } else {
-            tasks = taskRepository.findByUser(user);
+            tasks = taskRepository.findByUser(user, pageable);
         }
-        model.addAttribute("tasks", tasks);
+        model.addAttribute("tasks", tasks.getContent());
+        model.addAttribute("currentPage", tasks.getNumber());
+        model.addAttribute("totalPages", tasks.getTotalPages());
         model.addAttribute("status", status);
         model.addAttribute("priority", priority);
+        model.addAttribute("currentDateTime", dateTimeService.getCurrentDateTime());
+        model.addAttribute("currentWeather", weatherService.getCurrentWeather());
 
         return "dashboard";
     }
