@@ -1,0 +1,307 @@
+<mxfile host="65bd71144e">
+    <diagram name="1. Registration and Login" id="page-registration">
+        <mxGraphModel dx="361" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="500" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="r_entry" value="Open /register or /login" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="20" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="r_submit" value="Submit form&#xa;username / password" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="105" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="r_diamond" value="Credentials valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="190" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="r_success" value="Create session&#xa;logged via AuthenticationEventLogger" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2F6F5E;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="207" width="220" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="r_end" value="/dashboard" style="text;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="211" width="120" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="r_error" value="Show error&#xa;returns to the same form" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A4432F;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="320" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_entry_submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;" parent="1" source="r_entry" target="r_submit" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_submit_diamond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;" parent="1" source="r_submit" target="r_diamond" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_yes" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;fontColor=#2F6F5E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="r_diamond" target="r_success" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_success_end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;" parent="1" source="r_success" target="r_end" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_no" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;fontColor=#A4432F;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="r_diamond" target="r_error" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="r_error" target="r_submit" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="40" y="348"/>
+                            <mxPoint x="40" y="133"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="2. Task Creation" id="page-task-creation">
+        <mxGraphModel dx="361" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="500" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="t_entry" value="Click &quot;New Task&quot;&#xa;from the dashboard" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="20" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_fill" value="Fill &amp; submit&#xa;title, due date, priority" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="105" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_diamond" value="Fields valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="190" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_success" value="Save via TaskRepository&#xa;redirects with a success toast" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2F6F5E;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="207" width="220" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_end" value="/dashboard" style="text;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="211" width="120" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_error" value="Redisplay form&#xa;with field-level errors" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A4432F;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="320" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="te_entry_fill" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;" parent="1" source="t_entry" target="t_fill" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="te_fill_diamond" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;" parent="1" source="t_fill" target="t_diamond" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="te_yes" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;fontColor=#2F6F5E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="t_diamond" target="t_success" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="te_success_end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;" parent="1" source="t_success" target="t_end" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="te_no" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;fontColor=#A4432F;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="t_diamond" target="t_error" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="te_return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="t_error" target="t_fill" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="40" y="348"/>
+                            <mxPoint x="40" y="133"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="3. Dashboard Filtering and Pagination" id="page-filtering">
+        <mxGraphModel dx="361" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="650" pageHeight="650" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="f_entry" value="GET /dashboard&#xa;?status &amp; ?priority &amp; ?page" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="20" width="220" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_d1" value="status present?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="105" width="140" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_status" value="findByUserAndStatus(user, status, page)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2F6F5E;fontFamily=Courier New;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="122" width="360" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_d2" value="priority present?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="225" width="140" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_priority" value="findByUserAndPriority(user, priority, page)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2F6F5E;fontFamily=Courier New;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="242" width="360" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_fallback" value="findByUser(user, page)&#xa;no filter applied" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="345" width="220" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_page" value="Page&lt;Task&gt;, size 10&#xa;sorted by dueDate — render template" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="440" width="400" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe_entry_d1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;" parent="1" source="f_entry" target="f_d1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe_d1_status" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;fontColor=#2F6F5E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="f_d1" target="f_status" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe_d1_d2" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5B6660;fontColor=#5B6660;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="f_d1" target="f_d2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe_d2_priority" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;fontColor=#2F6F5E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="f_d2" target="f_priority" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe_d2_fallback" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5B6660;fontColor=#5B6660;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="f_d2" target="f_fallback" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe_status_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="f_status" target="f_page" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="660" y="150"/>
+                            <mxPoint x="660" y="468"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="fe_priority_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="f_priority" target="f_page" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe_fallback_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5B6660;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="f_fallback" target="f_page" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="4. Task Editing" id="page-task-editing">
+        <mxGraphModel dx="361" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="900" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+
+                <mxCell id="ed_entry" value="GET /tasks/{id}/edit" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Courier New;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="20" width="240" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_d1" value="Task exists?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="105" width="200" height="90" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_notfound" value="Not found&#xa;findById() throws → GlobalExceptionHandler → /dashboard" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A4432F;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="122" width="320" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_d2" value="You own this task?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="225" width="200" height="90" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_notowner" value="Not the owner&#xa;redirect to /dashboard, no message shown" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A4432F;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="242" width="320" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_prefill" value="Prefill form&#xa;with the task's current values" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="345" width="200" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_submit" value="Edit &amp; submit&#xa;title, due date, priority" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="430" width="200" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_d3" value="Fields valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="515" width="200" height="90" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_save" value="Save via TaskRepository&#xa;redirects to /dashboard" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2F6F5E;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="532" width="220" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_end" value="/dashboard" style="text;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="536" width="120" height="48" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ed_error" value="Redisplay form&#xa;with field-level errors" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A4432F;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="635" width="200" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="ede_entry_d1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ed_entry" target="ed_d1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_d1_notfound" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;fontColor=#A4432F;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="ed_d1" target="ed_notfound" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_d1_d2" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5B6660;fontColor=#5B6660;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ed_d1" target="ed_d2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_d2_notowner" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;fontColor=#A4432F;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="ed_d2" target="ed_notowner" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_d2_prefill" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5B6660;fontColor=#5B6660;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ed_d2" target="ed_prefill" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_prefill_submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;" parent="1" source="ed_prefill" target="ed_submit" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_submit_d3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;" parent="1" source="ed_submit" target="ed_d3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_d3_save" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;fontColor=#2F6F5E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="ed_d3" target="ed_save" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_save_end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;" parent="1" source="ed_save" target="ed_end" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_d3_error" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;fontColor=#A4432F;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ed_d3" target="ed_error" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ede_return" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="ed_error" target="ed_submit" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="40" y="663"/>
+                            <mxPoint x="40" y="458"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram name="5. Task Deletion" id="page-task-deletion">
+        <mxGraphModel dx="361" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="550" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+
+                <mxCell id="del_entry" value="POST /tasks/{id}/delete" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Courier New;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="20" width="240" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="del_d1" value="Task exists?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="105" width="200" height="90" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="del_notfound" value="Not found&#xa;findById() throws → GlobalExceptionHandler → /dashboard" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A4432F;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="122" width="320" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="del_d2" value="Requester owns task?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="225" width="200" height="90" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="del_delete" value="taskRepository.delete(task)&#xa;logged: task deleted" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2F6F5E;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="242" width="320" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="del_noop" value="No-op, nothing deleted&#xa;logged as a suspicious attempt" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A4432F;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="345" width="200" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="del_page" value="Redirect to /dashboard" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1C2321;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="440" width="440" height="56" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="dele_entry_d1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1C2321;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="del_entry" target="del_d1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="dele_d1_notfound" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;fontColor=#A4432F;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="del_d1" target="del_notfound" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="dele_d1_d2" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5B6660;fontColor=#5B6660;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="del_d1" target="del_d2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="dele_d2_delete" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;fontColor=#2F6F5E;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="del_d2" target="del_delete" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="dele_d2_noop" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;fontColor=#A4432F;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="del_d2" target="del_noop" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="dele_delete_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#2F6F5E;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.9;entryY=0;entryDx=0;entryDy=0;" parent="1" source="del_delete" target="del_page" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="dele_noop_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A4432F;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.1;entryY=0;entryDx=0;entryDy=0;" parent="1" source="del_noop" target="del_page" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
