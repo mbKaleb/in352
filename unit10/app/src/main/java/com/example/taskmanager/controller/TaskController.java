@@ -119,7 +119,7 @@ public class TaskController {
         log.info("User '{}' created task '{}' (id={})", user.getUsername(), task.getTitle(), task.getId());
 
         redirectAttributes.addFlashAttribute("successMessage",
-                "✔ Task \"" + task.getTitle() + "\" was created!");
+                "Task \"" + task.getTitle() + "\" was created!");
         return "redirect:/dashboard";
     }
 

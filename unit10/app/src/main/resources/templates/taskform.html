@@ -12,7 +12,7 @@
         <!-- Error modal: shown when required fields are missing/invalid on submit -->
         <dialog class="modal-dialog" th:if="${showErrorModal}">
             <form method="dialog"><button class="modal-close" aria-label="Close">&times;</button></form>
-            <p>✖ please fill all required fields</p>
+            <p>please fill all required fields</p>
         </dialog>
 
         <form th:action="${taskId != null} ? @{'/tasks/' + ${taskId}} : @{/tasks}" th:object="${taskForm}" method="post">

@@ -11,8 +11,8 @@
 
         <!-- External API info bar: current server time + current weather -->
         <div class="info-bar">
-            <span th:if="${currentDateTime}" th:text="'🕐 ' + ${currentDateTime}">🕐 2026-08-17T12:00:00</span>
-            <span th:if="${currentWeather}" th:text="'🌤 ' + ${currentWeather}">🌤 New York: 72°F, Sunny</span>
+            <span th:if="${currentDateTime}" th:text="${currentDateTime}">Aug 17, 2026 12:00 PM</span>
+            <span th:if="${currentWeather}" th:text="${currentWeather}">New York: 72°F, Sunny</span>
         </div>
 
         <a th:href="@{/tasks/new}" class="btn new-task-link">+ New Task</a>

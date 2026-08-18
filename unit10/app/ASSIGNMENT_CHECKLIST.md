@@ -29,8 +29,8 @@
 - [ ] Responsive layout on desktop
 - [ ] Form validation — successful case
 - [ ] Form validation — failed case (title required, description "groceries", due date 1/1/23, must reject past date)
-- [ ] Success toast (bottom right): "✔ Task 'buy milk' was created!"
-- [ ] Error modal: "✖ please fill all required fields"
+- [ ] Success toast (bottom right): "Task 'buy milk' was created!"
+- [ ] Error modal: "please fill all required fields"
 
 ## Step 4: Error Handling and Logging
 - [x] `@ControllerAdvice` for exception handling — `GlobalExceptionHandler` catches `NoSuchElementException`, `UsernameNotFoundException`, generic `Exception`
