@@ -9,12 +9,8 @@
     <main>
         <h3>Create Task</h3>
 
-        <!-- Error modal: shown when required fields are missing/invalid on submit -->
-        <div class="modal-overlay" th:if="${showErrorModal}">
-            <div class="modal-box">
-                <p>✖ please fill all required fields</p>
-            </div>
-        </div>
+        <!-- Error toast: shown when required fields are missing/invalid on submit -->
+        <div class="toast toast-error" th:if="${showErrorModal}">✖ please fill all required fields</div>
 
         <form th:action="${taskId != null} ? @{'/tasks/' + ${taskId}} : @{/tasks}" th:object="${taskForm}" method="post">
             <div>
