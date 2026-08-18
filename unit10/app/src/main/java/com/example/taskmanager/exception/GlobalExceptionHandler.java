@@ -1,4 +1,4 @@
-package com.example.taskmanager.controller;
+package com.example.taskmanager.exception;
 
 import java.util.NoSuchElementException;
 
